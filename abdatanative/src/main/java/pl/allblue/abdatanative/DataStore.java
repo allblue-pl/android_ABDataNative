@@ -8,18 +8,15 @@ public class DataStore {
     private NativeApp nativeApp = null;
     private ActionsSet nativeActions = null;
 
-    public DataStore(NativeApp nativeApp)
-    {
+    public DataStore(NativeApp nativeApp) {
         this.nativeApp = nativeApp;
     }
 
-    public NativeApp getNativeApp()
-    {
+    public NativeApp getNativeApp() {
         return this.nativeApp;
     }
 
-    public Table getTable(String name)
-    {
+    public Table getTable(String name) {
         return new Table(this, name);
     }
 
