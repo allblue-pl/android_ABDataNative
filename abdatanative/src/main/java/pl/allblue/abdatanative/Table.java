@@ -33,19 +33,21 @@ public class Table {
         Log.d("Table", "Calling delete...");
         this.dataStore.getNativeApp().callWeb("ABData",
                 "Table_Delete", actionArgs, new OnWebResultCallback() {
-                    @Override
-                    public void call(JSONObject result) throws JSONException {
-                        if (!result.isNull("error")) {
-                            Log.d("ABData Error -> Delete", result.getString(
-                                    "error"));
-                            callback.onExecute(result.getString(
-                                    "error"));
-                            return;
-                        }
+            @Override
+            public void onResult(JSONObject result) throws JSONException {
+                callback.onExecute(null);
+            }
 
-                        callback.onExecute(null);
-                    }
-                });
+            @Override
+            public void onError(String error) {
+                Log.d("ABData Error -> Delete", error);
+                try {
+                    callback.onExecute(error);
+                } catch (JSONException e) {
+                    throw new AssertionError(e);
+                }
+            }
+        });
     }
 
     public void select(JSONObject args, Integer transactionId,
@@ -64,14 +66,18 @@ public class Table {
         this.dataStore.getNativeApp().callWeb("ABData", "Table_Select",
                 actionArgs, new OnWebResultCallback() {
             @Override
-            public void call(JSONObject result) throws JSONException {
-                if (!result.isNull("error")) {
-                    Log.d("ABData Error -> Select", result.getString("error"));
-                    callback.onSelect(null, result.getString("error"));
-                    return;
-                }
-
+            public void onResult(JSONObject result) throws JSONException {
                 callback.onSelect(result.getJSONArray("rows"), null);
+            }
+
+            @Override
+            public void onError(String error) {
+                Log.d("ABData Error -> Select", error);
+                try {
+                    callback.onSelect(null, error);
+                } catch (JSONException e) {
+                    throw new AssertionError(e);
+                }
             }
         });
     }
@@ -94,14 +100,18 @@ public class Table {
         this.dataStore.getNativeApp().callWeb("ABData",
                 "Table_Update", actionArgs, new OnWebResultCallback() {
             @Override
-            public void call(JSONObject result) throws JSONException {
-                if (!result.isNull("error")) {
-                    Log.d("ABData Error -> Update", result.getString("error"));
-                    callback.onExecute(result.getString("error"));
-                    return;
-                }
-
+            public void onResult(JSONObject result) throws JSONException {
                 callback.onExecute(null);
+            }
+
+            @Override
+            public void onError(String error) {
+                Log.d("ABData Error -> Update", error);
+                try {
+                    callback.onExecute(error);
+                } catch (JSONException e) {
+                    throw new AssertionError(e);
+                }
             }
         });
     }
