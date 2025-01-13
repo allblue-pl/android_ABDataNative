@@ -3,12 +3,12 @@ package pl.allblue.abdatanative;
 import pl.allblue.abnative.ActionsSet;
 import pl.allblue.abnative.NativeApp;
 
-public class DataStore {
+public class NativeDataStore {
 
     private NativeApp nativeApp = null;
     private ActionsSet nativeActions = null;
 
-    public DataStore(NativeApp nativeApp) {
+    public NativeDataStore(NativeApp nativeApp) {
         this.nativeApp = nativeApp;
     }
 
@@ -16,8 +16,8 @@ public class DataStore {
         return this.nativeApp;
     }
 
-    public Table getTable(String name) {
-        return new Table(this, name);
+    public NativeTable getTable(String name) {
+        return new NativeTable(this, name);
     }
 
 

@@ -8,12 +8,12 @@ import org.json.JSONObject;
 
 import pl.allblue.abnative.OnWebResultCallback;
 
-public class Table {
+public class NativeTable {
 
-    private DataStore dataStore = null;
+    private NativeDataStore dataStore = null;
     private String name = null;
 
-    public Table(DataStore dataStore, String tableName) {
+    public NativeTable(NativeDataStore dataStore, String tableName) {
         this.name = tableName;
         this.dataStore = dataStore;
     }
@@ -84,7 +84,7 @@ public class Table {
 
     public void update(JSONArray rows, Integer transactionId,
             OnExecuteCallback callback) throws ABDataNativeException {
-        Log.d("Testing", this.name + ": " + transactionId);
+        Log.d("Test", this.name + ": " + transactionId);
 
         JSONObject actionArgs = new JSONObject();
         try {
