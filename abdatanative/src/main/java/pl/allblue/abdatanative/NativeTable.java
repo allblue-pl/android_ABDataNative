@@ -84,8 +84,6 @@ public class NativeTable {
 
     public void update(JSONArray rows, Integer transactionId,
             OnExecuteCallback callback) throws ABDataNativeException {
-        Log.d("Test", this.name + ": " + transactionId);
-
         JSONObject actionArgs = new JSONObject();
         try {
             actionArgs.put("transactionId", transactionId == null ?
